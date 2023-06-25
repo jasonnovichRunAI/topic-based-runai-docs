@@ -63,4 +63,4 @@ Node affinity is the ability to assign a project to run on specific nodes or spe
 
 ## Working with Projects
 
-To configure your project, see [Configuring Projects](project-setup-ui.md#configuring-projects).
+To configure a project, see [Configuring Projects](project-setup-ui.md#configuring-projects).
