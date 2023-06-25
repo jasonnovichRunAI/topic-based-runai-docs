@@ -3,40 +3,47 @@ title: Projects Overview
 summary: This article describes the concepts needed for setting up a project.
 authors:
     - Jason Novich
-date: 2022-May-15
+date: 2022-June-18
 ---
-# Introduction to Projects
+# Projects Overview
 
-The **Projects** feature gives administrators and researchers benefits in managing the system. Benefits include:
+**Projects** is a tool for Administrators and researchers to control resource allocation, create efficient organizational structures, and help prioritize workloads. When a project is created it is assigned a [department](department-setup.md#departments), a name (a namespace), resource quotas, users (access control), and scheduling rules.
 
-* More insight and control over system resources.
-* Improved prioritization of workloads.
-* Efficient organizational structure.
+For Administrators, **Projects** provides a clear way of organizing, isolating, and allocating GPU, CPU, and other resources for specific workloads. With granular control over the project resources, Administrators are able to monitor resource allocation, utilization, and workload performance.
 
-For administrators, **Projects** provides improved monitoring of used and unused resources. Administrators are able to allocate system resources more effectively by assigning specific amount of resources to a project. Administrators are able to monitor resource utilization of projects providing more insight into system performance. Administrators also improve efficiency by assigning users (Researchers) to one or more projects providing better access control and isolation between initiatives.
+For researchers, **Projects** provides granular control over workload resource allocation and prioritization. Researchers can assign a specific node pool or pools for a workload as well as select and adjust the node pool priority. With node affinity Researchers can even limit the workload to a specific node type.
 
-For researchers, **Projects** provides autonomy over workload resource allocation. Researchers submit workloads and request resources that are then allocated from the project. The workloads are contained within the specific project which enables the researcher to organize workloads based on required resources or other commonalities.
+## Department
+
+A project must be associated with a **Department**. A department is a container for one or more projects and has its own resource allocation. For more information, see [Departments](department-setup.md#departments).
+
+!!! Note
+    It is recommended that the total amount of resources in projects assigned to a department not exceed the total amount of resources allocated to the department.
+
+## Project name and namespace
+
+The name of a project is the Kubernetes namespace where the project is run. This is the mechanism used for isolating groups of resource and assigning them to the project and workloads within. For more information, see [Kubernetes Namepsaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/){target=_blank}.
 
 ## Quota management
 
-Administrators assign quotas to specific projects through the node pools. Each Project is allocated with a total quota of GPUs, CPUs, and CPU memory based.  The total resources available for the project is the sum of all the node pool quotas. These resources are guaranteed to the project regardless of the cluster status. Node pools can set in order of workload running priority. For more information, see [Node pool priority](../../Researcher/scheduling/using-node-pools.md#multiple-node-pools-selection).
+Quota management for a Project is configured through node pool resource allocation. The total resources available for the project is the sum of all the node pool quotas. Resources allocated in the project are guaranteed to all of the workloads in the project regardless of the cluster status. Workloads are prioritized based on the node pool priority list and if not specified, the workloads will be scheduled using the default priority list. For more information, see [Node pool priority](../../Researcher/scheduling/using-node-pools.md#multiple-node-pools-selection).
 
 ### Over quota
 
-**Over quota** is the ability for the project or workload to receive more resources that specified in the quota settings. If there are resources that are unused, the project will be able to get more. This means that a workload requesting resources from one node pool whose quota is used up, can get its resources from a quota that belongs to different Project for the same node pool.
+**Over quota** for the project or workload allows the workloads to receive more resources than specified in the quota settings. This allows unused resources to be assigned to the project from other projects and nodes. Workloads can be assigned resources allocated to other projects from the same node pool.
 
 !!! Note
     GPUs that were allocated as **over quota** will be reassigned when needed for other workloads.
 
- **Over quota** is enabled per node pool and assigned an over quota priority. For more information, see [Over quota priority](../../Researcher/scheduling/the-runai-scheduler.md#over-quota-priority).
+ **Over quota** is enabled per node pool and assigned an **over quota priority**. For more information, see [Over quota priority](../../Researcher/scheduling/the-runai-scheduler.md#over-quota-priority).
 
 ## Scheduling rules
 
-Scheduling rules provide a means to control the projects compute resources. Rules can be applied based on a duration and utilization of resources.
+Scheduling rules provide a means to control the compute resources allocated to a project. Rules are applied based on a duration and utilization of resources. There are four kinds of rules:
 
 ### Idle GPU timeout
 
-This rule controls the amount of time that GPUs which are idle will be remain assigned to the project. When the time elapses the GPUs will be resassigned as needed for other projects or for over quota requests. This rule is based on the workload type and is configured in days, hours, and minutes.
+This rule controls the amount of time that GPUs which are idle will be remain assigned to the project. When the time elapses the GPUs will be reassigned as needed for other projects or for over quota requests. This rule is based on the workload type and is configured in days, hours, and minutes.
 
 ### Workspace duration
 
@@ -53,7 +60,7 @@ that require the use of a CPU but not GPU. Node Affinity ensures workloads that 
 
 * The project needs specialized hardware.
 * The project team is the owner of specific hardware.
-* Direct specific workloads to work on hardware that optimzed for the workload.
+* Direct specific workloads to work on hardware that optimized for the workload.
 
 ## Working with Projects
 

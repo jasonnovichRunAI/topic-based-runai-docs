@@ -211,9 +211,8 @@ nav:
       - 'Setup cluster wide PVC' : 'admin/researcher-setup/cluster-wide-pvc.md'
       - 'Group Nodes' : 'admin/researcher-setup/limit-to-node-group.md'
       - 'Projects' : 
-        - 'Overview' : 'admin/admin-ui-setup/project-setup.md'
-        - 'Configure projects CLI' : 'admin/admin-ui-setup/project-setup-cli.md'
-        - 'Configure projects UI' : 'admin/admin-ui-setup/project-setup-ui.md'
+        - 'Projects Overview' : 'admin/admin-ui-setup/project-setup.md'
+        - 'Configuring Projects' : 'admin/admin-ui-setup/project-setup-ui.md'
     - 'Workloads' : 
       - 'Overview' : 'admin/workloads/workload-overview-admin.md'
       - 'Policies' : 'admin/workloads/policies.md'
