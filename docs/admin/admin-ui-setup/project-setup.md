@@ -64,4 +64,4 @@ that require the use of a CPU but not GPU. Node Affinity ensures workloads that 
 
 ## Working with Projects
 
-To configure your project, see [Configuring Projects]().
+To configure your project, see [Configuring Projects](project-setup-ui.md#configuring-projects).
