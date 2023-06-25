@@ -2,9 +2,9 @@
 
 ## Create a project
 
-!!! Note 
+!!! Note
 
-    * To create a project you must have at least one department configured. For more information, see [Configure a departmeny]().
+    * To create a project you must have at least one department configured. For more information, see [Configure a department](department-setup.md#creating-and-managing-departments).
     * To be able to create or edit Projects, you must have *Editor* access. See the [Users](admin-ui-users.md) documentation.
 
 To create a project:
